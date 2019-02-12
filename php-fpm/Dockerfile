@@ -12,15 +12,15 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get -y --no-install-recommends install ffmpeg python software-properties-common wget \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+RUN wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl \
+	&& chmod a+rx /usr/local/bin/youtube-dl \
 	&& hash -r
 
 # Install git
 RUN apt-get update \
     && apt-get -y install git \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
-
-RUN wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl \
-	&& chmod a+rx /usr/local/bin/youtube-dl \
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 	&& php composer-setup.php \
