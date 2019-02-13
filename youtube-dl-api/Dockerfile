@@ -1,4 +1,6 @@
 FROM phpdockerio/php73-fpm:latest
+LABEL vendor="cedrickoka/youtube-dl-api" maintainer="okacedrick@gmail.com" version="1.0.0"
+
 WORKDIR "/app"
 
 # Fix debconf warnings upon build
@@ -36,6 +38,7 @@ ENV APP_ENV=prod
 ENV APP_SECRET=598d01f22edceea6bf7c5ace30929f41
 ENV LC_ALL=C
 
+COPY php-ini-overrides.ini /etc/php/7.3/fpm/conf.d/99-overrides.ini
 COPY youtube-dl.conf /etc/youtube-dl.conf
 
 RUN chmod 0755 /etc/youtube-dl.conf \
