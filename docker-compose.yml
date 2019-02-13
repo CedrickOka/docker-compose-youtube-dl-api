@@ -14,8 +14,9 @@ services:
           - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
 
     youtube-dl-api:
-        build: youtube-dl-api
+        image: cedrickoka/youtube-dl-api
         container_name: youtube-dl-api
         restart: always
         volumes:
           - ./youtube-dl-api/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
+          - ./youtube-dl.conf:/etc/youtube-dl.conf
