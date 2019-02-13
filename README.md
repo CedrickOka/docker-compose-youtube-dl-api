@@ -3,11 +3,11 @@ PHPDocker.io generated environment
 
 # Add to your project #
 
-Simply, unzip the file into your project, this will create `docker-compose.yml` on the root of your project and a folder named `phpdocker` containing nginx and php-fpm config for it.
+Simply, unzip the file into your project, this will create `docker-compose.yml` on the root of your project and a folder named `phpdocker` containing nginx and youtube-dl-api config for it.
 
 Ensure the webserver config on `docker\nginx.conf` is correct for your project. PHPDocker.io will have customised this file according to the application type you chose on the generator, for instance `web/app|app_dev.php` on a Symfony project, or `public/index.php` on generic apps.
 
-Note: you may place the files elsewhere in your project. Make sure you modify the locations for the php-fpm dockerfile, the php.ini overrides and nginx config on `docker-compose.yml` if you do so.
+Note: you may place the files elsewhere in your project. Make sure you modify the locations for the youtube-dl-api dockerfile, the php.ini overrides and nginx config on `docker-compose.yml` if you do so.
  
 # How to run #
 
@@ -32,8 +32,7 @@ You'll need to configure your application to use any services you enabled:
 
 Service|Hostname|Port number
 ------|---------|-----------
-php-fpm|php-fpm|9000
-Memcached|memcached|11211 (default)
+youtube-dl-api|youtube-dl-api|9000
 
 # Docker compose cheatsheet #
 
@@ -45,8 +44,8 @@ Memcached|memcached|11211 (default)
   * Kill containers: `docker-compose kill`
   * View container logs: `docker-compose logs`
   * Execute command inside of container: `docker-compose exec SERVICE_NAME COMMAND` where `COMMAND` is whatever you want to run. Examples:
-        * Shell into the PHP container, `docker-compose exec php-fpm bash`
-        * Run symfony console, `docker-compose exec php-fpm bin/console`
+        * Shell into the PHP container, `docker-compose exec youtube-dl-api bash`
+        * Run symfony console, `docker-compose exec youtube-dl-api bin/console`
         * Open a mysql shell, `docker-compose exec mysql mysql -uroot -pCHOSEN_ROOT_PASSWORD`
 
 # Recommendations #
