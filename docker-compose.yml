@@ -20,7 +20,7 @@ services:
         environment:
           - APP_LOCALE=en
           - MESSENGER_TRANSPORT_DSN=${MESSENGER_TRANSPORT_DSN:-semaphore://localhost%kernel.project_dir%/.env}
-          - ASSETS_DIR=/opt/youtube-dl/downlads
+          - ASSETS_DIR=/opt/youtube-dl/downloads
           - SHELL_VERBOSITY=${SHELL_VERBOSITY:--1}
         image: cedrickoka/youtube-dl-api
         restart: always
