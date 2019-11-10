@@ -24,6 +24,3 @@ services:
           - SHELL_VERBOSITY=${SHELL_VERBOSITY:--1}
         image: cedrickoka/youtube-dl-api
         restart: always
-        volumes:
-          - ./youtube-dl-api/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
-          - ./youtube-dl-api/youtube-dl.conf:/etc/youtube-dl.conf
