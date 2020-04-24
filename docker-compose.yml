@@ -6,21 +6,23 @@ services:
 
     nginx:
         container_name: nginx
+        depends_on:
+          - youtube-dl-api
         image: nginx:alpine
         ports:
-          - "${NGINX_PORT:-80}:80"
+          - ${NGINX_PORT:-80}:80
         restart: always
         volumes:
           - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
 
     youtube-dl-api:
         container_name: youtube-dl-api
-        depends_on:
-          - nginx
         environment:
-          - APP_LOCALE=en
-          - MESSENGER_TRANSPORT_DSN=${MESSENGER_TRANSPORT_DSN:-semaphore://localhost%kernel.project_dir%/.env}
-          - ASSETS_DIR=/opt/youtube-dl/downloads
-          - SHELL_VERBOSITY=${SHELL_VERBOSITY:--1}
+            APP_LOCALE: ${APP_LOCALE-en}
+            MESSENGER_TRANSPORT_DSN: ${MESSENGER_TRANSPORT_DSN:-semaphore://localhost%kernel.project_dir%/.env}
+            ASSETS_DIR: ${ASSETS_DIR:-/opt/youtube-dl/downloads}
+            FILE_UNIX_OWNER: ${FILE_UNIX_OWNER:-www-data}
+            SHELL_VERBOSITY: ${SHELL_VERBOSITY:--1}
+            PROCESS_NUMBER: ${PROCESS_NUMBER:-10}
         image: cedrickoka/youtube-dl-api
         restart: always
